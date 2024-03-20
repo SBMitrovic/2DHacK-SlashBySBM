@@ -305,10 +305,8 @@ MonoBehaviour:
   flightSpeed: 2
   waypointReachedDistance: 0.1
   biteDetectionZone: {fileID: 6910407863459688218}
-  deathCollider: {fileID: 0}
+  deathCollider: {fileID: 3374281333691972057}
   waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   _hasTarget: 0
@@ -475,6 +473,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.44067383, y: 0.33403635}
-  m_Size: {x: 2.2127075, y: 2.622223}
+  m_Offset: {x: -0.5531769, y: 0.33403635}
+  m_Size: {x: 4.200409, y: 4.200409}
   m_Direction: 0

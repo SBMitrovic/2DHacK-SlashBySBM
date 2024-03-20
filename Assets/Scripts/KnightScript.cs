@@ -145,7 +145,7 @@ public class Knight : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         velocityOnHit = rb.velocity;
-        rb.velocity = new Vector2(knockback.x * 1.5f, rb.velocity.y + knockback.y);
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         
         
     }

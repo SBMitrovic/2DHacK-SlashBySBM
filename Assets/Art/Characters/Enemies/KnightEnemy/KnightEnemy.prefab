@@ -403,7 +403,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 2.798236
   m_LinearDrag: 0
   m_AngularDrag: 0.05
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkAcceleration: 30
-  maxSpeed: 3
+  maxSpeed: 4
   walkStopRate: 0.05
   attackZone: {fileID: 6779439060491587035}
   cliffDetectionZone: {fileID: 966053785856766341}

@@ -11,6 +11,8 @@ public class FlyingEye : MonoBehaviour
     public Collider2D deathCollider;
     public List<Transform> waypoints;
 
+    
+
     Animator animator;
     Rigidbody2D rb;
     Damageable damageable;
