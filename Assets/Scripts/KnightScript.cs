@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
@@ -47,6 +48,7 @@ public class Knight : MonoBehaviour
     }
 
     public bool _hasTarget = false;
+    public Vector2 velocityOnHit;
 
     public bool HasTarget
     {
@@ -118,6 +120,10 @@ public class Knight : MonoBehaviour
             else
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
         }
+
+        if(rb.velocity.x == 0){
+            animator.SetBool(AnimationStrings.lockVelocity, false);
+        }
     }
 
     private void FlipDirection()
@@ -138,7 +144,10 @@ public class Knight : MonoBehaviour
 
     public void OnHit(int damage, Vector2 knockback)
     {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        velocityOnHit = rb.velocity;
+        rb.velocity = new Vector2(knockback.x * 1.5f, rb.velocity.y + knockback.y);
+        
+        
     }
 
     public void OnCliffDetected()

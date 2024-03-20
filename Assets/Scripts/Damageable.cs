@@ -8,9 +8,8 @@ public class Damageable : MonoBehaviour
     public UnityEvent<int, Vector2> damageableHit;
     public UnityEvent damageableDeath;
     public UnityEvent<int, int> healthChanged;
-    
-    Animator animator;
 
+    Animator animator;
 
     [SerializeField]
     private int _maxHealth = 100;
@@ -39,20 +38,26 @@ public class Damageable : MonoBehaviour
         set
         {
             _health = value;
+            healthChanged?.Invoke(_health, maxHealth);
 
-            if (_health <= 0)
+            // If health drops below 0, character is no longer alive
+            if(_health <= 0)
             {
                 isAlive = false;
             }
         }
     }
 
-
     [SerializeField]
     private bool _isAlive = true;
 
-    public bool isAlive
-    {
+    [SerializeField]
+    private bool isInvincible = false;
+
+    private float timeSinceHit = 0;
+    public float invincibilityTime = 0.25f;
+
+    public bool isAlive {
         get
         {
             return _isAlive;
@@ -60,70 +65,72 @@ public class Damageable : MonoBehaviour
         set
         {
             _isAlive = value;
-            animator.SetBool(AnimationStrings.isAlive, _isAlive);
-            Debug.Log("isalive set" + value);
+            animator.SetBool(AnimationStrings.isAlive, value);
+            Debug.Log("IsAlive set " + value);
 
+            if(value == false)
+            {
+                damageableDeath.Invoke();
+            }
         }
     }
 
-    [SerializeField]
-    private bool isInvincible = false;
-
-
-        public bool LockVelocity
+    // The velocity should not be changed while this is true but needs to be respected by other physics components like
+    // the player controller
+    public bool LockVelocity
     {
         get
         {
             return animator.GetBool(AnimationStrings.lockVelocity);
         }
-        set{
+        set
+        {
             animator.SetBool(AnimationStrings.lockVelocity, value);
         }
     }
 
-
-    private float timeSinceHit = 0;
-    public float invincibilityTime = 0.25f;
-
-    void Awake()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void Update()
+    private void Update()
     {
-        if (isInvincible)
+        if(isInvincible)
         {
-            if (timeSinceHit > invincibilityTime)
+            if(timeSinceHit > invincibilityTime)
             {
+                // Remove invincibility
                 isInvincible = false;
                 timeSinceHit = 0;
             }
 
             timeSinceHit += Time.deltaTime;
         }
-
     }
 
+    // Returns whether the damageable took damage or not
     public bool Hit(int damage, Vector2 knockback)
     {
-
-        if (isAlive && !isInvincible)
+        if(isAlive && !isInvincible)
         {
             health -= damage;
             isInvincible = true;
-            LockVelocity = true;
-            //Notify other subscribed components that the damagable was hit to handle the knockback nad such
+
+            // Notify other subscribed components that the damageable was hit to handle the knockback and such
             animator.SetTrigger(AnimationStrings.hitTrigger);
+            LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
+            CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+
             return true;
         }
 
-        //Unable to hit
+        // Unable to be hit
         return false;
     }
 
-     
+    // Returns whether the character was healed or not
     public bool Heal(int healthRestore)
     {
         if(isAlive && health < maxHealth)

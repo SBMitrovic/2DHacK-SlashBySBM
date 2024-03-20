@@ -278,7 +278,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 1.9111328, y: 1.6802363}
-      - {x: -0.5947638, y: 1.4859335}
+      - {x: 0.26071167, y: 1.9010344}
+      - {x: -1.3212957, y: 1.309809}
       - {x: 1.2546692, y: 0.6947007}
       - {x: 1.2909684, y: -0.42031085}
       - {x: 2.7256942, y: -0.83061194}
@@ -496,12 +497,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc34acdddc5fee4cb04a8f6c07b333e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkAcceleration: 5
+  walkAcceleration: 30
   maxSpeed: 3
   walkStopRate: 0.05
   attackZone: {fileID: 6779439060491587035}
   cliffDetectionZone: {fileID: 966053785856766341}
   _hasTarget: 0
+  velocityOnHit: {x: 2, y: 2}
 --- !u!95 &2759109313310596262
 Animator:
   serializedVersion: 5

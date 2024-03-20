@@ -201,12 +201,21 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeedImpulse);
         }
     }
-    //attack method
+    //Melee method
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
+        }
+    }
+
+    //Bow attack
+    public void OnBowAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            animator.SetTrigger(AnimationStrings.rangedAttack);
         }
     }
 
