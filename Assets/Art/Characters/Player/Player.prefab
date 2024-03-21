@@ -243,6 +243,7 @@ MonoBehaviour:
   runSpeed: 9
   jumpSpeedImpulse: 10
   airWalkSpeed: 4
+  UImanager: {fileID: 0}
   _isFacingRight: 1
   _isRunning: 0
 --- !u!114 &4767850194980169593
@@ -394,6 +395,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3fb3a7ec-4e4a-4203-86a2-597ced180a57
     m_ActionName: Player/BowAttack[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6b435a71-a45b-45f2-beef-5df0f1915a1b
+    m_ActionName: UI/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManagerScript : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class UIManagerScript : MonoBehaviour
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public Canvas gameCanvas;
+    public GameObject gameOverUI; 
     // Start is called before the first frame update
-
+    
     private void Awake()
     {
         gameCanvas = FindObjectOfType<Canvas>();
+        
 
     }
 
@@ -65,12 +68,31 @@ public class UIManagerScript : MonoBehaviour
             #endif
 
             #if (UNITY_EDITOR)
-                    UnityEditor.EditorApplication.isPlaying = false;
+                    SceneManager.LoadScene("ExitScene");
             #elif (UNITY_STANDALONE)
-                    Application.Quit();
+                   SceneManager.LoadScene("ExitScene");
             #elif (UNITY_WEBGL)
-                    SceneManager.LoadScene("QuitScene");
+                    SceneManager.LoadScene("ExitScene");
+            #elif (UNITY_WEBGL)
+                    SceneManager.LoadScene("ExitScene");
             #endif
         }
     }
+    
+
+    
+
+    public void gameOver(){
+        gameOverUI.SetActive(true);
+    }
+
+    public void restartGame(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void quit(){
+        Application.Quit();
+    }
+
+
 }

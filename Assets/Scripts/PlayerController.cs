@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
+    public UIManagerScript UImanager = new UIManagerScript();
 
     public bool _isFacingRight = true;
 
@@ -137,8 +138,12 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+       
     }
 
+
+    private bool triggered = false;
+    
     private void FixedUpdate()
     {
         if (!damageable.LockVelocity)
@@ -146,6 +151,11 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
+    
+        if(!isAlive && !triggered){
+            Debug.Log("YOU ARE EMPTY");
+            UImanager.gameOver();
+        }
     }
 
 
