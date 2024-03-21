@@ -11,8 +11,6 @@ public class FlyingEye : MonoBehaviour
     public Collider2D deathCollider;
     public List<Transform> waypoints;
 
-    
-
     Animator animator;
     Rigidbody2D rb;
     Damageable damageable;
@@ -55,7 +53,11 @@ public class FlyingEye : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HasTarget = biteDetectionZone.detectedColliders.Count > 0;
+       HasTarget = biteDetectionZone.detectedColliders.Count > 0;
+       
+        
+
+        
     }
 
     private void FixedUpdate()
