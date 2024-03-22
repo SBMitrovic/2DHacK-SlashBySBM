@@ -10,6 +10,7 @@ public class KnightRandomSpawner : MonoBehaviour
     public float interval;
     private float counter = 0;
     int randSpawnPoint;
+    private int counterEnemiesSpawned = 0 ;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +20,13 @@ public class KnightRandomSpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate(){
         counter += 1;
-
-        if(counter >= interval){
+        
+        if(counter >= interval && counterEnemiesSpawned < 10){
             int randEnemy = Random.Range(0, 1);
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(enemyPrefabs, spawnPoints[randSpawnPoint].position, transform.rotation);
             counter = 0;
+            counterEnemiesSpawned++;
         }
     }
 }

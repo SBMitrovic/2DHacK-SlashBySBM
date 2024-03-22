@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
-    public UIManagerScript UImanager = new UIManagerScript();
+    public UIManagerScript UImanager;
 
     public bool _isFacingRight = true;
 
@@ -124,6 +125,8 @@ public class PlayerController : MonoBehaviour
         get
         {
             return animator.GetBool(AnimationStrings.isAlive);
+        }set {
+            animator.SetBool(AnimationStrings.isAlive, value);
         }
     }
 
@@ -143,18 +146,40 @@ public class PlayerController : MonoBehaviour
 
 
     private bool triggered = false;
-    
+    public Vector2 position;
+    private float counter = 0;
     private void FixedUpdate()
     {
+        position = transform.position; 
+        
         if (!damageable.LockVelocity)
             rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
     
-        if(!isAlive && !triggered){
-            Debug.Log("YOU ARE EMPTY");
+        if(!isAlive && !triggered || position.y < -13.4f){
             UImanager.gameOver();
+            if(isAlive != false)
+            {
+                isAlive = false;
+            }
+        }
+
+        
+        counter+=1;
+        Debug.Log(((int)counter));
+        if(!GameObject.Find("BossEnemy2")){
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            Debug.Log("BOOSSS DEAD");
+            UImanager.gameCompleted();
         }
     }
 
@@ -192,7 +217,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("OnRun is called");
+           
             isRunning = true;
         }
         else if (context.canceled)
@@ -203,10 +228,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("OnRun before if clause");
+       
         if (context.started && touchingDirections.isGrounded && canMove)
         {
-            Debug.Log("OnJump is called");
             animator.SetTrigger(AnimationStrings.jumpTrigger);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeedImpulse);
         }
@@ -234,4 +258,5 @@ public class PlayerController : MonoBehaviour
       
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
+
 }

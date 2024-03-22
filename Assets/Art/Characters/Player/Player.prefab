@@ -241,11 +241,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   runSpeed: 9
-  jumpSpeedImpulse: 10
+  jumpSpeedImpulse: 9
   airWalkSpeed: 4
   UImanager: {fileID: 0}
   _isFacingRight: 1
   _isRunning: 0
+  position: {x: 0, y: 0}
 --- !u!114 &4767850194980169593
 MonoBehaviour:
   m_ObjectHideFlags: 0

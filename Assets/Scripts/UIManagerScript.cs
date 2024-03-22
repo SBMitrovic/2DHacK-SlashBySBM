@@ -12,7 +12,8 @@ public class UIManagerScript : MonoBehaviour
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public Canvas gameCanvas;
-    public GameObject gameOverUI; 
+    public GameObject gameOverUI;
+    public GameObject gameCompletedUI;  
     // Start is called before the first frame update
     
     private void Awake()
@@ -92,6 +93,11 @@ public class UIManagerScript : MonoBehaviour
 
     public void quit(){
         Application.Quit();
+    }
+
+    public void gameCompleted(){
+        Debug.Log("Game Completed");
+        gameCompletedUI.SetActive(true);
     }
 
 

@@ -54,12 +54,5 @@ public class HealthBar : MonoBehaviour
     }
 
 
-/*
-    void difficultyChanged(){
-        GameObject knight = GameObject.FindGameObjectWithTag("Knight");
-        Knight scritp = knight.GetComponent<Knight>();
-        scritp.
-    }
 
-    */
 }
