@@ -16,12 +16,17 @@ public class Attack : MonoBehaviour
         {
             // If parent is facing the left by localscale, our knockback x flips its value to face the left as well
             Vector2 deliveredKnockback = transform.parent.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
-
+            
+            if(collision.name == "BossEnemy2"){
+                damageable.Hit(attackDamage, Vector2.zero);
+                 Debug.Log(collision.name + " hit for " + attackDamage);
+            }else{
             // Hit the target
             bool gotHit = damageable.Hit(attackDamage, deliveredKnockback);
 
             if(gotHit)
                 Debug.Log(collision.name + " hit for " + attackDamage);
+            }
         }
     }
 }

@@ -109,14 +109,14 @@ public class Knight : MonoBehaviour
 
         if (!damageable.LockVelocity)
         {
-            if (CanMove && touchingDirections.isGrounded)
+            if (CanMove && touchingDirections.isGrounded){
                 // Accelerate towards max Speed
                
                 rb.velocity = new Vector2(
                     Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed),
                     rb.velocity.y);
                 
-               
+            } 
             else
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
         }
@@ -145,7 +145,7 @@ public class Knight : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         velocityOnHit = rb.velocity;
-        rb.velocity = new Vector2(knockback.x * 1.5f, rb.velocity.y + knockback.y);
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         
         
     }

@@ -53,7 +53,11 @@ public class FlyingEye : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HasTarget = biteDetectionZone.detectedColliders.Count > 0;
+       HasTarget = biteDetectionZone.detectedColliders.Count > 0;
+       
+        
+
+        
     }
 
     private void FixedUpdate()
