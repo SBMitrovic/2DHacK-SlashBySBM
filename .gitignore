@@ -73,9 +73,7 @@ crashlytics-build.properties
 /Assets.Art
 /Assets.Settings
 /Assets.Packages
- 
 
 
 
-*.asset
-*.Assets
+
