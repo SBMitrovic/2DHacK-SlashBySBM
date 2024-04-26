@@ -154,10 +154,7 @@ public class PlayerController : MonoBehaviour
         
         if (!damageable.LockVelocity)
             rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
-
-        animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
-
-    
+            animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
         if(!isAlive && !triggered || position.y < -13.4f){
             UImanager.gameOver();
             if(isAlive != false)
@@ -170,14 +167,6 @@ public class PlayerController : MonoBehaviour
         counter+=1;
         Debug.Log(((int)counter));
         if(!GameObject.Find("BossEnemy2")){
-            Debug.Log("BOOSSS DEAD");
-            Debug.Log("BOOSSS DEAD");
-            Debug.Log("BOOSSS DEAD");
-            Debug.Log("BOOSSS DEAD");
-            Debug.Log("BOOSSS DEAD");
-            Debug.Log("BOOSSS DEAD");
-            Debug.Log("BOOSSS DEAD");
-            Debug.Log("BOOSSS DEAD");
             Debug.Log("BOOSSS DEAD");
             UImanager.gameCompleted();
         }
